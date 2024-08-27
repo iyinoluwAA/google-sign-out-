@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<button onclick="signG()">Google sign up</button>
+ 
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+    import { getAuth ,GoogleAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+    
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyC7TeYVaOc_IPRBuTwi6iKA4M2bRlXWga4",
+      authDomain: "project-phase-1-e1f4d.firebaseapp.com",
+      projectId: "project-phase-1-e1f4d",
+      storageBucket: "project-phase-1-e1f4d.appspot.com",
+      messagingSenderId: "1045010560596",
+      appId: "1:1045010560596:web:76b4954b911384dfd05fc1"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    const signG = () => {
+      signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        window.location.href = 'dashboard.html'
+      }).catch((error) => {
+        console.log(error);
+      })
+    }
+
+    window.signG = signG
+
+    const signGOut = () => {
+      signOut(auth)
+      .then(() => {
+        console.log('signed out');
+      }).catch((error) => {
+        console.log(error);
+      })
+    }
+    window.signGOut = signGOut
+    </script>
+</body>
+</html>

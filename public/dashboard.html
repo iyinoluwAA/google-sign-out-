@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>i am josh</h1>
+<button onclick="signGOut()"> Google Sign out</button>
+
+
+
+    
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+    import { getAuth, signOut, onAuthStateChanged    } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+    import { getDatabase } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
+    
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyC7TeYVaOc_IPRBuTwi6iKA4M2bRlXWga4",
+      authDomain: "project-phase-1-e1f4d.firebaseapp.com",
+      projectId: "project-phase-1-e1f4d",
+      storageBucket: "project-phase-1-e1f4d.appspot.com",
+      messagingSenderId: "1045010560596",
+      appId: "1:1045010560596:web:76b4954b911384dfd05fc1"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const database = getDatabase(app)
+
+    onAuthStateChanged(auth , (user) => {
+        if(user){
+            console.log(user);
+            
+        }else{
+            window.location.href = 'index.html'
+        }
+    })
+
+
+    const signGOut = () => {
+      signOut(auth)
+      .then(() => {
+        console.log('signed out');
+      }).catch((error) => {
+        console.log(error);
+      })
+    }
+    window.signGOut = signGOut
+    </script>
+</body>
+</html>
